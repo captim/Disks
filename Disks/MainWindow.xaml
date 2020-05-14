@@ -1,0 +1,92 @@
+﻿<Window x:Name="InfoDiskForm" x:Class="Disks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Disks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="525" FontSize="14" Width="850" Loaded="InfoDiskForm_Loaded" MaxWidth="850" MaxHeight="526" ResizeMode="NoResize">
+    <Grid>
+        <Grid x:Name="MainLayout" HorizontalAlignment="Left" Height="496" VerticalAlignment="Top" Width="842">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="475"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21"/>
+                <RowDefinition Height="414"/>
+            </Grid.RowDefinitions>
+            <Menu Grid.Row="0" Grid.Column="0"
+                  Name="MainMenu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" BorderThickness="1" Height="20" Grid.RowSpan="2" Width="143">
+                <MenuItem Name="FileMenuItem" Header="Файл">
+                    <MenuItem Header="Завантажити" Name="LoadDataMenuItem" Click="LoadDataMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Name="SelFlightMenuItem" Header="Пошук">
+                    <MenuItem Header="За виробником" Name="SelectYMenuItem" Click="SelectYMenuItem_Click"/>
+                    <MenuItem Header="За типом" Name="SelectXYMenuItem" Click="SelectXYMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Name="FlightMenuItem" Header="Диски">
+                    <MenuItem Header="Редагувати" Name="EditDataMenuItem" Click="EditDataMenuItem_Click"/>
+                    <MenuItem Header="Додати" Name="AddDataMenuItem" Click ="AddDataMenuItem_Click"/>
+                </MenuItem>
+            </Menu>
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DisksDG" HorizontalAlignment="Left"
+                      Margin="5,5,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding}" MouseUp="DisksDG_MouseUp" MaxHeight="350" IsReadOnly="True" SelectionChanged="DisksDG_SelectionChanged" FontSize="14" IsSynchronizedWithCurrentItem="False" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header = "ID" Binding = "{Binding id}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Шифр" Binding = "{Binding code}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Виробник" Binding = "{Binding title}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Назва" Binding = "{Binding company}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Рік випуску" Binding = "{Binding releaseYear}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Тип" Binding = "{Binding type}" Width="Auto"/>
+                </DataGrid.Columns >
+            </DataGrid>
+            <GroupBox Grid.Row="1" Grid.Column="1" x:Name="disksGroupBox" Header="Диск" HorizontalAlignment="Left" VerticalAlignment="Top" Height="280" Width="298" Margin="44,0,-41,0">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" x:Name="idDiskLabel" Content="Шифр" HorizontalAlignment="Left" Margin="10,0,0,0" Width="94" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="1" x:Name="companyDiskLabel" Content="Виробник" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="94" Height="30"/>
+                    <Label Grid.Column="0" Grid.Row="2" x:Name="titleDiskLabel" Content="Назва" HorizontalAlignment="Left" Margin="10,0,0,0" Width="102" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="3" x:Name="releaseYearLabel" Content="Рік випуску" HorizontalAlignment="Left" Margin="10,0,0,0" Width="118" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="4" x:Name="typeLabel" Content="Тип" HorizontalAlignment="Left" Margin="10,0,0,0" Width="118" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="codeDiskTextBox" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Center" Height="22"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="companyDiskTextBox" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="75" Height="22"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="titleDiskTextBox" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Center" Height="22"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="releaseYearTextBox" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"  Height="22"/>
+                    <TextBox Grid.Column="1" Grid.Row="4" x:Name="typeDiskTextBox" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"  Height="22"/>
+                    <Button Grid.Column="0" Grid.Row="5" x:Name="saveButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="100" Click="saveButton_Click" Content="Зберегти"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Grid.Column="1" x:Name="selDiskGroupBox" Header="Пошук дисків" HorizontalAlignment="Left" VerticalAlignment="Top" Height="138" Width="297" Margin="44,306,-40,-29">
+                <Grid Height="120">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Name="companyDiskLabelY" Content="Виробник" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="1" Name="typeDiskLabelX" Content="Тип" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" />
+                    <Button Grid.Column="0" Grid.Row="2" Name="selBtn" Content="Вибрати" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center" Width="100" Click="selBtn_Click"/>
+                    <ComboBox Grid.Column="1" Grid.Row="0" Name="companyDiskList" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="100"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1" Name="typeDiskList" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="100"/>
+                    <Button Grid.Column="1" Grid.Row="3" Name="saveSelBtn" Content="Зберегти" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="100" Click="saveSelBtn_Click"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</Window>
