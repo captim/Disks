@@ -1,4 +1,3 @@
-C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\Disks.csprojAssemblyReference.cache
 C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\MainWindow.g.cs
 C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\App.g.cs
 C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\Disks_MarkupCompile.cache
@@ -20,3 +19,4 @@ C:\Users\Tim\source\repos\Disks\Disks\bin\Debug\Ubiety.Dns.Core.dll
 C:\Users\Tim\source\repos\Disks\Disks\bin\Debug\Renci.SshNet.dll
 C:\Users\Tim\source\repos\Disks\Disks\bin\Debug\MySql.Data.xml
 C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\Disks.csproj.CopyComplete
+C:\Users\Tim\source\repos\Disks\Disks\obj\Debug\Disks.csprojAssemblyReference.cache

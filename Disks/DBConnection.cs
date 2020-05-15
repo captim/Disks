@@ -79,5 +79,55 @@ namespace Disks
             conn.Open();
             command.ExecuteNonQuery();
         }
+        public void Update(Disk disk)
+        {
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection conn = new MySqlConnection(connStr);
+            command = new MySqlCommand("UPDATE collection SET code = ?, title = ?, company = ?, release_year = ?, type = ? WHERE id = ?", conn);
+            command.Parameters.Add("@code", MySqlDbType.VarChar, 20).Value = disk.code;
+            command.Parameters.Add("@title", MySqlDbType.VarChar, 20).Value = disk.title;
+            command.Parameters.Add("@company", MySqlDbType.VarChar, 20).Value = disk.company;
+            command.Parameters.Add("@release_year", MySqlDbType.Int16, 4).Value = disk.releaseYear;
+            command.Parameters.Add("@type", MySqlDbType.VarChar, 20).Value = disk.type;
+            command.Parameters.Add("@id", MySqlDbType.Int16, 11).Value = disk.id;
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        public List<string> SelectAllCompanies()
+        {
+            List<string> company = new List<string>();
+            string commandString = "SELECT DISTINCT company FROM collection";
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection conn = new MySqlConnection(connStr);
+            command.CommandText = commandString;
+            command.Connection = conn;
+            MySqlDataReader reader;
+            command.Connection.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                company.Add((string)reader["company"]);
+            }
+            reader.Close();
+            return company;
+        }
+        public List<string> SelectAllTypes()
+        {
+            List<string> types = new List<string>();
+            string commandString = "SELECT DISTINCT type FROM collection";
+            MySqlCommand command = new MySqlCommand();
+            MySqlConnection conn = new MySqlConnection(connStr);
+            command.CommandText = commandString;
+            command.Connection = conn;
+            MySqlDataReader reader;
+            command.Connection.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                types.Add((string)reader["type"]);
+            }
+            reader.Close();
+            return types;
+        }
     }
 }
