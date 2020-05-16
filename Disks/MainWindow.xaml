@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Disks"
         mc:Ignorable="d"
-        Title="MainWindow" Height="525" FontSize="14" Width="850" Loaded="InfoDiskForm_Loaded" MaxWidth="850" MaxHeight="526" ResizeMode="NoResize">
+        Title="MainWindow" Height="525" FontSize="14" Width="850" Loaded="InfoDiskForm_Loaded" MaxWidth="850" MaxHeight="526" ResizeMode="NoResize" Icon="icon.ico">
     <Grid>
         <Grid x:Name="MainLayout" HorizontalAlignment="Left" Height="496" VerticalAlignment="Top" Width="842">
             <Grid.ColumnDefinitions>
@@ -31,12 +31,12 @@
                 </MenuItem>
             </Menu>
             <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DisksDG" HorizontalAlignment="Left"
-                      Margin="5,5,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding}" MouseUp="DisksDG_MouseUp" MaxHeight="350" IsReadOnly="True" SelectionChanged="DisksDG_SelectionChanged" FontSize="14" IsSynchronizedWithCurrentItem="False" CanUserResizeColumns="False" CanUserResizeRows="False">
+                      Margin="5,5,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding}" MaxHeight="350" IsReadOnly="True" SelectionChanged="DisksDG_SelectionChanged" FontSize="14" IsSynchronizedWithCurrentItem="False" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header = "ID" Binding = "{Binding id}" Width="Auto"/>
                     <DataGridTextColumn Header = "Шифр" Binding = "{Binding code}" Width="Auto"/>
-                    <DataGridTextColumn Header = "Виробник" Binding = "{Binding title}" Width="Auto"/>
-                    <DataGridTextColumn Header = "Назва" Binding = "{Binding company}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Виробник" Binding = "{Binding company}" Width="Auto"/>
+                    <DataGridTextColumn Header = "Назва" Binding = "{Binding title}" Width="Auto"/>
                     <DataGridTextColumn Header = "Рік випуску" Binding = "{Binding releaseYear}" Width="Auto"/>
                     <DataGridTextColumn Header = "Тип" Binding = "{Binding type}" Width="Auto"/>
                 </DataGrid.Columns >

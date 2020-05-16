@@ -82,11 +82,14 @@ namespace Disks
             } 
             OpenDBFile();
             disksGroupBox.Visibility = Visibility.Hidden;
+            companyDiskList.Text = "";
+            typeDiskList.Text = "";
             Resize(400, 475);
         }
 
         private void SelectYMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            selectedType = "";
             selDiskGroupBox.Visibility = Visibility.Visible;
             typeDiskList.Visibility = Visibility.Hidden;
             Resize(this.Height + 500, 1000);
@@ -121,11 +124,6 @@ namespace Disks
             disksGroupBox.Visibility = Visibility.Visible;
             Resize(this.Height, 1000);
             isGoingToAdd = true;
-        }
-
-        private void DisksDG_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)

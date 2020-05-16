@@ -12,7 +12,7 @@ namespace Disks
     {
 
         private static DBConnection db;
-        private string connStr;
+        private string connStr = "Server = localhost; Database = disks; Uid = root; Pwd = ;";
 
         private DBConnection() { }
 
@@ -22,13 +22,7 @@ namespace Disks
             {
                 db = new DBConnection();
             }
-            db.Connection();
             return db;
-        }
-
-        private void Connection()
-        {
-            connStr = "Server = localhost; Database = disks; Uid = root; Pwd = ;";
         }
         public List<Disk> GetAllDisks()
         {
